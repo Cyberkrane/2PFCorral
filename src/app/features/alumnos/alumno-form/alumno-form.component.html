@@ -1,0 +1,31 @@
+<h2 mat-dialog-title *ngIf="!alumno">Agregar Alumno</h2>
+<h2 mat-dialog-title *ngIf="alumno">Editar Alumno</h2>
+
+<mat-dialog-content>
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input matInput [(ngModel)]="alumno.nombre" name="nombre" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Apellido</mat-label>
+      <input matInput [(ngModel)]="alumno.apellido" name="apellido" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Edad</mat-label>
+      <input matInput [(ngModel)]="alumno.edad" name="edad" type="number" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Curso</mat-label>
+      <input matInput [(ngModel)]="alumno.curso" name="curso" required>
+    </mat-form-field>
+
+    <div mat-dialog-actions>
+      <button mat-button (click)="onCancel()">Cancelar</button>
+      <button mat-raised-button color="primary" type="submit">Guardar</button>
+    </div>
+  </form>
+</mat-dialog-content>
