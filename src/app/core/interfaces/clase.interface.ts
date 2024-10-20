@@ -5,3 +5,4 @@ export interface IClase {
   profesor: string;
   alumnos: string[]; // Aquí almacenamos los IDs de los alumnos
 }
+

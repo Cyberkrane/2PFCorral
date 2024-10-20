@@ -23,15 +23,20 @@
   </ng-container>
 
   <!-- Alumnos -->
-  <!-- <ng-container matColumnDef="alumnos">
-    <mat-header-cell *matHeaderCellDef> Alumnos </mat-header-cell>
-    <mat-cell *matCellDef="let clase"> {{ clase.alumnos.length }} </mat-cell>
-  </ng-container> -->
-
-  <!-- Alumnos -->
   <ng-container matColumnDef="alumnos">
     <mat-header-cell *matHeaderCellDef> Alumnos </mat-header-cell>
-    <mat-cell *matCellDef="let clase"> {{ clase.alumnos.join(', ') }} </mat-cell>
+    <!-- <mat-cell *matCellDef="let clase"> {{ clase.alumnos.join(', ') === '' ? 'Sin Alumnos' : clase.alumnos }} </mat-cell> -->
+
+    <mat-cell *matCellDef="let clase">
+      <ul class="py-2">
+        <li *ngFor="let alumno of clase.alumnos" class="py-1">
+          {{ alumno | titlecase }}
+        </li>
+        <p *ngIf="clase.alumnos.length === 0">sin alumnos</p>
+      </ul> 
+    </mat-cell>
+
+   
   </ng-container>
 
   <!-- Acciones -->

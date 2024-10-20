@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 // Pipes
 import { TruncatePipe } from './pipes/truncate.pipe';
 
@@ -32,6 +33,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     MatDialogModule,
     MatFormFieldModule,
     MatOptionModule,
+    MatSelectModule,
 
     FormsModule,
     ReactiveFormsModule
@@ -47,6 +49,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     MatDialogModule,
     MatFormFieldModule,
     MatOptionModule,
+    MatSelectModule,
 
     FormsModule,
     ReactiveFormsModule,
