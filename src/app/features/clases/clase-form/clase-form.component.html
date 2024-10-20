@@ -15,11 +15,16 @@
       <mat-label>Profesor</mat-label>
       <input matInput [(ngModel)]="clase.profesor" name="profesor" required />
     </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Alumnos</mat-label>
+      <mat-select [(ngModel)]="clase.alumnos" name="alumnos" multiple>
+        <mat-option *ngFor="let alumno of alumnos" [value]="alumno.id">{{ alumno.nombre }}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </mat-dialog-content>
-  
   <mat-dialog-actions>
     <button mat-button (click)="onCancel()">Cancelar</button>
     <button mat-button color="primary" type="submit">{{ clase.id ? 'Actualizar' : 'Agregar' }}</button>
   </mat-dialog-actions>
 </form>
-

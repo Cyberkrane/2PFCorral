@@ -23,9 +23,15 @@
   </ng-container>
 
   <!-- Alumnos -->
-  <ng-container matColumnDef="alumnos">
+  <!-- <ng-container matColumnDef="alumnos">
     <mat-header-cell *matHeaderCellDef> Alumnos </mat-header-cell>
     <mat-cell *matCellDef="let clase"> {{ clase.alumnos.length }} </mat-cell>
+  </ng-container> -->
+
+  <!-- Alumnos -->
+  <ng-container matColumnDef="alumnos">
+    <mat-header-cell *matHeaderCellDef> Alumnos </mat-header-cell>
+    <mat-cell *matCellDef="let clase"> {{ clase.alumnos.join(', ') }} </mat-cell>
   </ng-container>
 
   <!-- Acciones -->

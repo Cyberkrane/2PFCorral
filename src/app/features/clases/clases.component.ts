@@ -10,12 +10,17 @@ import { ClaseFormComponent } from './clase-form/clase-form.component';
   styleUrls: ['./clases.component.scss']
 })
 export class ClasesComponent implements OnInit {
+
   clases: IClase[] = [];
   displayedColumns: string[] = [ 'nombre', 'profesor', 'alumnos', 'id', 'actions'];
 
   constructor(private readonly claseService: ClaseService, private readonly dialog: MatDialog) {}
 
   ngOnInit(): void {
+    this.cargarClases();
+  }
+
+  cargarClases(): void {
     this.claseService.getAllClasses().subscribe((data) => {
       this.clases = data;
     });
