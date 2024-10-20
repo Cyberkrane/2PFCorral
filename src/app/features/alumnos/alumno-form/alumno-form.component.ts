@@ -9,7 +9,8 @@ import { AlumnoService } from 'src/app/core/services/alumno.service';
   styleUrls: ['./alumno-form.component.scss']
 })
 export class AlumnoFormComponent implements OnInit {
-  public alumno: IAlumno = { id: 0, nombre: '', apellido: '', edad: 0, curso: '' };
+  
+  public alumno: IAlumno = { id: null, nombre: '', apellido: '', edad: null, curso: '' };
 
   constructor(
     private readonly dialogRef: MatDialogRef<AlumnoFormComponent>,
@@ -18,17 +19,21 @@ export class AlumnoFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.alumno = this.data ? { ...this.data } : { id: 0, nombre: '', apellido: '', edad: 0, curso: '' };
+    this.alumno = this.data ? { ...this.data } : { id: null, nombre: '', apellido: '', edad: null, curso: '' };
   }
 
-  onSubmit(form: any): void {
+  onSubmit(alumnoForm: any): void {
     if (this.alumno.id) {
-      this.alumnoService.updateAlumno(this.alumno);
+      this.alumnoService.updateStudents(this.alumno).subscribe(() => {
+        this.dialogRef.close();
+      });
     } else {
-      this.alumnoService.addAlumno(this.alumno);
+      this.alumnoService.addStudents(this.alumno).subscribe(() => {
+        this.dialogRef.close();
+      });
     }
-    this.dialogRef.close();
   }
+  
 
   onCancel(): void {
     this.dialogRef.close();

@@ -1,22 +1,30 @@
 <h2>Gestión de Alumnos</h2>
 
 <mat-table [dataSource]="alumnos" class="mat-elevation-z8">
-  <!-- ID -->
-  <ng-container matColumnDef="id">
-    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-    <mat-cell *matCellDef="let alumno"> {{ alumno.id }} </mat-cell>
-  </ng-container>
-
   <!-- Nombre -->
   <ng-container matColumnDef="nombre">
     <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
-    <mat-cell *matCellDef="let alumno"> {{ alumno.nombre }} </mat-cell>
+    <mat-cell *matCellDef="let alumno"> {{ alumno.nombre | titlecase}} </mat-cell>
   </ng-container>
 
   <!-- Apellido -->
   <ng-container matColumnDef="apellido">
     <mat-header-cell *matHeaderCellDef> Apellido </mat-header-cell>
-    <mat-cell *matCellDef="let alumno"> {{ alumno.apellido }} </mat-cell>
+    <mat-cell *matCellDef="let alumno"> {{ alumno.apellido | titlecase}} </mat-cell>
+  </ng-container>
+
+  <!-- Edad -->
+  <ng-container matColumnDef="edad">
+    <mat-header-cell *matHeaderCellDef> Edad </mat-header-cell>
+    <mat-cell *matCellDef="let alumno"> {{ alumno.edad }} </mat-cell>
+  </ng-container>
+
+  <!-- ID -->
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+    <mat-cell *matCellDef="let alumno">
+      {{ alumno.id | truncate : 5 }}
+    </mat-cell>
   </ng-container>
 
   <!-- Acciones -->
@@ -24,13 +32,16 @@
     <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
     <mat-cell *matCellDef="let alumno">
       <button mat-button (click)="editarAlumno(alumno)">Editar</button>
-      <button mat-button color="warn" (click)="eliminarAlumno(alumno.id)">Eliminar</button>
+      <button mat-button color="warn" (click)="eliminarAlumno(alumno.id)">
+        Eliminar
+      </button>
     </mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
 
-<button mat-raised-button color="primary" (click)="agregarAlumno()">Agregar Alumno</button>
-
+<button mat-raised-button color="primary" (click)="agregarAlumno()">
+  Agregar Alumno
+</button>

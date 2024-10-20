@@ -1,8 +1,9 @@
-<h2 mat-dialog-title *ngIf="!alumno">Agregar Alumno</h2>
-<h2 mat-dialog-title *ngIf="alumno">Editar Alumno</h2>
+<h2 mat-dialog-title>
+  {{ alumno.nombre ? 'Editar' : 'Agregar' }} Alumno
+</h2>
 
-<mat-dialog-content>
-  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+<mat-dialog-content class="d-flex flex-column">
+  <form (ngSubmit)="onSubmit(alumnoForm)" #alumnoForm="ngForm">
     <mat-form-field>
       <mat-label>Nombre</mat-label>
       <input matInput [(ngModel)]="alumno.nombre" name="nombre" required>
@@ -23,9 +24,12 @@
       <input matInput [(ngModel)]="alumno.curso" name="curso" required>
     </mat-form-field>
 
-    <div mat-dialog-actions>
-      <button mat-button (click)="onCancel()">Cancelar</button>
-      <button mat-raised-button color="primary" type="submit">Guardar</button>
-    </div>
+    <button mat-raised-button color="primary" type="submit">
+      {{ alumno.id ? 'Editar' : 'Agregar' }} Alumno
+    </button>
+    <button mat-button (click)="onCancel()">Cancelar</button>
   </form>
 </mat-dialog-content>
+
+
+

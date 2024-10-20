@@ -1,8 +1,8 @@
 
 export interface IAlumno {
-    id: number;
+    id: string | null;
     nombre: string;
     apellido: string;
-    edad: number;
+    edad: number | null;
     curso: string;
   }
