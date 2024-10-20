@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>{{ clase.id ? 'Editar Clase' : 'Agregar Clase' }}</h2>
+<form (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input matInput [(ngModel)]="clase.nombre" name="nombre" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Descripción</mat-label>
+      <textarea matInput [(ngModel)]="clase.descripcion" name="descripcion"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Profesor</mat-label>
+      <input matInput [(ngModel)]="clase.profesor" name="profesor" required />
+    </mat-form-field>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Cancelar</button>
+    <button mat-button color="primary" type="submit">{{ clase.id ? 'Actualizar' : 'Agregar' }}</button>
+  </mat-dialog-actions>
+</form>
+
