@@ -1,35 +1,38 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { IAlumno } from '../interfaces/alumno.interface';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { v4 as uuidv4 } from 'uuid';
+
 
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AlumnoService {
-  private alumnos: IAlumno[] = [
-    { id: 1, nombre: 'Juan', apellido: 'Perez', edad: 18, curso: 'Matemáticas' },
-    { id: 2, nombre: 'Ana', apellido: 'Garcia', edad: 20, curso: 'Historia' }
-  ];
 
-  constructor() {}
+  private readonly apiUrl = 'http://localhost:3000/students';
 
-  getAlumnos(): Observable<IAlumno[]> {
-    return of(this.alumnos);  // Simulamos la devolución de los datos mockeados
+  constructor(private readonly http: HttpClient) {}
+
+
+  getAllStudents(): Observable<IAlumno[]> {
+    return this.http.get<IAlumno[]>(this.apiUrl);
   }
 
-  addAlumno(alumno: IAlumno): void {
-    this.alumnos.push(alumno);
-  }
-  
-  deleteAlumno(id: number): void {
-    this.alumnos = this.alumnos.filter(a => a.id !== id);
+  addStudents(alumno: IAlumno): Observable<IAlumno> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    alumno.id = uuidv4();
+    return this.http.post<IAlumno>(this.apiUrl, alumno, { headers });
   }
   
-  updateAlumno(alumno: IAlumno): void {
-    const index = this.alumnos.findIndex(a => a.id === alumno.id);
-    if (index !== -1) {
-      this.alumnos[index] = alumno;
-    }
+  updateStudents(alumno: IAlumno): Observable<IAlumno> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.put<IAlumno>(`${this.apiUrl}/${alumno.id}`, alumno, { headers });
+  }
+
+  deleteStudents(id: string): Observable<string> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.delete<string>(`${this.apiUrl}/${id}`, { headers });
   }
 }

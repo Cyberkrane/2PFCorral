@@ -10,9 +10,12 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    TruncatePipe
+  ],
   imports: [
     CommonModule,
     MatSidenavModule,
@@ -38,7 +41,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
 
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
+    TruncatePipe
   ]
 })
 export class SharedModule { }
