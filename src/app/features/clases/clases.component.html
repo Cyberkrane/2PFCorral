@@ -1,1 +1,44 @@
-<p>clases works!</p>
+<h2>Gestión de Clases</h2>
+
+<button mat-raised-button color="primary" class="mb-2" (click)="agregarClase()">Agregar Clase</button>
+
+
+<mat-table [dataSource]="clases" class="mat-elevation-z8">
+  <!-- ID -->
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+    <mat-cell *matCellDef="let clase"> {{ clase.id | truncate : 5 }} </mat-cell>
+  </ng-container>
+
+  <!-- Nombre -->
+  <ng-container matColumnDef="nombre">
+    <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+    <mat-cell *matCellDef="let clase"> {{ clase.nombre }} </mat-cell>
+  </ng-container>
+
+  <!-- Profesor -->
+  <ng-container matColumnDef="profesor">
+    <mat-header-cell *matHeaderCellDef> Profesor </mat-header-cell>
+    <mat-cell *matCellDef="let clase"> {{ clase.profesor }} </mat-cell>
+  </ng-container>
+
+  <!-- Alumnos -->
+  <ng-container matColumnDef="alumnos">
+    <mat-header-cell *matHeaderCellDef> Alumnos </mat-header-cell>
+    <mat-cell *matCellDef="let clase"> {{ clase.alumnos.length }} </mat-cell>
+  </ng-container>
+
+  <!-- Acciones -->
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+    <mat-cell *matCellDef="let clase">
+      <button mat-button (click)="editarClase(clase)">Editar</button>
+      <button mat-button color="warn" (click)="eliminarClase(clase.id)">Eliminar</button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+
